@@ -63,7 +63,6 @@
           <!-- Text input REPETIR EMAIL-->
           <div class="form-group">
             <label class="control-label" for="repetirEmail">Repetir Email</label>  
-            <span for="help_block" class="help_block">*</span>
             <div class="">
               <input id="repemail" name="repemail" placeholder="repetirEmail" class="form-control input-md" type="text">  
             </div>
@@ -87,18 +86,20 @@
         <legend>Datos de Contacto</legend>
       
           <!-- DEMANDANTE -->
-          <div class="demandante">
+          <div class="forma-pago">
             <label class="control-label" for="radios">Demandante</label>
+            <span for="help_block" class="help_block">*</span>
             <div class=""> 
-              <label class="radio-inline" for="radios-1">
-                <input name="radios" id="radios-1" value="2" type="radio">
-                Empresa
-              </label> 
               <label class="radio-inline" for="radios-0">
                 <input name="radios" id="radios-0" value="1" checked="checked" type="radio">
+                Empresa
+              </label> 
+              <label class="radio-inline" for="radios-1">
+                <input name="radios" id="radios-1" value="2" type="radio">
                 Particular
               </label> 
             </div>
+          </div>
 
           </div>
           </br></br></br>
@@ -144,6 +145,7 @@
           <!-- Select Basic PAIS-->
           <div class="form-group">
             <label class="control-label" for="pais">País</label>
+            <span for="help_block" class="help_block">*</span>
             <div class="">
               <select name="pais" id="pais" class="form-control">
               <option value="AF">Afganistán</option>
@@ -403,6 +405,7 @@
         <!-- FORMA DE PAGO-->
           <div class="forma-pago">
             <label class="control-label" for="radios">Forma de Pago</label>
+            <span for="help_block" class="help_block">*</span>
             <div class=""> 
               <label class="radio-inline" for="radios-0">
                 <input name="radios" id="radios-0" value="1" checked="checked" type="radio">
@@ -416,7 +419,6 @@
                 <input name="radios" id="radios-2" value="3" type="radio">
                 Anual
               </label> 
-              
             </div>
           </div>
 </fieldset>
@@ -444,20 +446,18 @@
           <!-- Password input REPETIR CONTRASEÑA-->
           <div class="form-group">
             <label class="control-label" for="contraseña2">Repetir Contraseña</label>
-            <span for="help_block" class="help_block">*</span>
             <div class="">
               <input id="contraseña2" name="contraseña2" placeholder="repetirContraseña" class="form-control input-md" type="password">
             </div>
           </div>
-
-<!--BOTON ENVIAR >-->
+        </fieldset>
+        <!--BOTON ENVIAR >-->
           <div class="form-group">
             
             <div class="">
               <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-default">ENVIAR</button>
             </div>
           </div>
-        </fieldset>
       </form>
 
 
