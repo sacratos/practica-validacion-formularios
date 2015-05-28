@@ -9,7 +9,9 @@ body{
   background-repeat:no-repeat;
   font-family: 'Open Sans', sans-serif;
   padding-bottom: 40px;
+
 }
+
 .auth h1{
   color:#000!important;
   font-weight:300;
@@ -88,7 +90,7 @@ body{
   color:#000!important;
 }
 .form-group{
-  max-width: 50%;
+    color: white;
   float: left;
   margin-top: 10px;
   margin-left: 20px;
@@ -210,7 +212,9 @@ body{
 .auth form .btn-link:hover{
   background:none;
 }
-
+.container{
+  padding: 20px 20px;
+}
 
 .auth label.label-floatlabel {
   /*font-weight: 300;
@@ -220,10 +224,9 @@ body{
   top: 1px!important;
 }
 .hero-unit {
-  margin: 50px auto 0 auto;
-  width: 300px;
-  font-size: 18px;
-  font-weight: 200;
+  margin: 20px auto;
+  width: 800px;
+  font-size: 14px;
   line-height: 30px;
   background-color: #eee;
   border-radius: 6px;
@@ -239,6 +242,6 @@ body{
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
-  color: #000;
+  color: white;
   padding: 0.2em 0;
 }
