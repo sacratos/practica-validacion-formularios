@@ -1,19 +1,24 @@
+/*PALETTON:
+http://paletton.com/#uid=5580u0kllllvdbUqhgCgpq3btuM
+*/
 .margin-top-20{
   margin-top: 20px;
 }
-.error{color:#C22;opacity:0.8;}
+.error{color:#82171C;opacity: 0.9;}
 body{
-  background:url('http://www.wallpaperup.com/uploads/wallpapers/2012/08/30/12087/3574f899daef41d2f145eba13ff7840f.jpg');
+  background:#A45083;
   background-size:100% 100%;
   background-attachment: fixed; 
   background-repeat:no-repeat;
   font-family: 'Open Sans', sans-serif;
   padding-bottom: 40px;
-
+  text-align: center;
 }
-
+.cree{
+  background-color: #C17CA6;
+}
 .auth h1{
-  color:#000!important;
+  color:#862D63!important;
   font-weight:300;
   font-family: 'Open Sans', sans-serif;
 }
@@ -23,7 +28,7 @@ body{
   padding-top: 20px;
 }
 .auth .auth-box legend{
-  color:#330739;
+  color:#862D63;
   font-family: 'Vivaldi', times;
   border:none;
   font-style:bold;
@@ -89,6 +94,12 @@ body{
   background: #fff!important;
   color:#000!important;
 }
+.btn-lg{
+  width: 80%;
+}
+.form-control{
+  margin-top: 5px;
+}
 .form-group{
     color: white;
   float: left;
@@ -136,11 +147,14 @@ body{
   box-shadow:none!important;
   height:auto;
 }
-
+label{
+  color: #29053F;
+}
 .auth form label{
-    color:white;
+    color:#862D63;
     font-size:21px;
     font-weight:120;
+
 
 }
 /*for radios & checkbox labels*/
@@ -206,8 +220,6 @@ body{
   border:none;
   color:black;
   padding-left:0;
-
-
 }
 .auth form .btn-link:hover{
   background:none;
@@ -230,11 +242,11 @@ body{
   line-height: 30px;
   background-color: #eee;
   border-radius: 6px;
-  padding: 60px;
+  padding: 20px;
 }
 
 .hero-unit h1 {
-  font-size: 60px;
+  font-size: 30px;
   line-height: 1;
   letter-spacing: -1px;
 }
