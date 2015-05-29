@@ -6,7 +6,7 @@ http://paletton.com/#uid=5580u0kllllvdbUqhgCgpq3btuM
 }
 .error{color:#82171C;opacity: 0.9;}
 body{
-  background:#A45083;
+  background:#8F6DA4;
   background-size:100% 100%;
   background-attachment: fixed; 
   background-repeat:no-repeat;
@@ -226,6 +226,7 @@ label{
 }
 .container{
   padding: 20px 20px;
+  background: #A45083;
 }
 
 .auth label.label-floatlabel {

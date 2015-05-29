@@ -13,6 +13,7 @@ $('#formulario').validate({
         },
         telefono: {
             required: true,
+            maxlenght: 9,
             minlenght: 9,
             digits: true,
         },
@@ -63,9 +64,9 @@ $('#formulario').validate({
             required: 'Escribe tus apellidos',
         },
         telefono: {
-            required: "Por favor, escribe tu telefono",
-            minlength: $.validator.format('Por favor, no escribas menos de {0} caracteres.'),
-            maxlength: $.validator.format('Por favor, no escribas mas de {0} caracteres.'),
+            required: 'Por favor, escribe tu telefono',
+            minlength: 'Por favor, no escribas menos de 9 caracteres.',
+            maxlength: 'Por favor, no escribas mas de 9 caracteres.',
             digits: 'Por favor, escribe sólo dígitos.',
         },
         email: {
@@ -77,8 +78,8 @@ $('#formulario').validate({
             equalTo: 'Los emails no coinciden.',
         },
         cuenta: {
-            iban: "Por favor, escribe una cuenta iban valida",
-            required: "Por favor, escribe tu cuenta iban",
+            iban: 'Por favor, escribe una cuenta iban valida',
+            required: 'Por favor, escribe tu cuenta iban',
         },
         /*cp: {
             digits: true,
@@ -86,21 +87,41 @@ $('#formulario').validate({
             minlength: 5,
         },*/
         localidad: {
-            required: "Por favor, escribe tu localidad",
+            required: 'Por favor, escribe tu localidad',
         },
         provincia: {
-            required: "Por favor, escribe tu provincia",
+            required: 'Por favor, escribe tu provincia',
         },
         usuario: {
-            required: "Por favor, escribe tu nombre de usuario",
-            minlength: "Usuario: minimo 4 caracteres",
+            required: 'Por favor, escribe tu nombre de usuario',
+            minlength: 'Usuario: minimo 4 caracteres',
         },
         contrasena1: {
-            required: "Por favor, escribe tu contraseña",
-            minlenght: "Contraseña de minimo 7 caracteres",
+            required: 'Por favor, escribe tu contraseña',
+            minlenght: 'Contraseña de minimo 7 caracteres',
         },
         contrasena2: {
-            equalTo: "Las contraseñas no coinciden",
+            equalTo: 'Las contraseñas no coinciden',
         }
+    }
+});
+$('#particular').change(function(evento) {
+    if ($('#particular').is(':checked')) {
+        $('label[for='empresa']').first().html('Nombre');
+        $('#nomempresa').val('');
+        $('#nomempresa').attr('placeholder', 'Nombre');
+        $('label[for='cif_nif']').first().html('NIF');
+        $('#cif_nif').val('');
+        $('#cif_nif').attr('placeholder', 'NIF');
+    }
+});
+$('#empresa').change(function(evento) {
+    if ($('#empresa').is(':checked')) {
+        $('label[for='empresa']').first().html('Empresa');
+        $('#nomempresa').val('');
+        $('#nomempresa').attr('placeholder', 'Nombre de la empresa');
+        $('label[for='cif_nif']').first().html('CIF');
+        $('#cif_nif').val('');
+        $('#cif_nif').attr('placeholder', 'CIF');
     }
 });
