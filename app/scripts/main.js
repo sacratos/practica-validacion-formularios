@@ -55,7 +55,7 @@ $('#formulario').validate({
             equalTo: contrasena1,
         }
     },
-    messages:{
+    messages: {
         nombre: {
             required: 'Escribe tu nombre',
             lettersonly: 'Por favor, sólo caracteres',
@@ -81,11 +81,11 @@ $('#formulario').validate({
             iban: 'Por favor, escribe una cuenta iban valida',
             required: 'Por favor, escribe tu cuenta iban',
         },
-        /*cp: {
-            digits: true,
-            required: true,
-            minlength: 5,
-        },*/
+        cp: {
+            digits: 'Por favor, numeros',
+            required: 'Por favor, escribe una cuenta cp valida',
+            minlength: 'Por favor, escribe 5 numeros',
+        },
         localidad: {
             required: 'Por favor, escribe tu localidad',
         },
@@ -105,23 +105,16 @@ $('#formulario').validate({
         }
     }
 });
-$('#particular').change(function(evento) {
-    if ($('#particular').is(':checked')) {
-        $('label[for='empresa']').first().html('Nombre');
-        $('#nomempresa').val('');
-        $('#nomempresa').attr('placeholder', 'Nombre');
-        $('label[for='cif_nif']').first().html('NIF');
-        $('#cif_nif').val('');
-        $('#cif_nif').attr('placeholder', 'NIF');
-    }
+$('#particular').toggle();
+//$('#empresa').toggle();
+$('#radios-particular').change(function(evento) {
+    console.log('cambio a Particular!');
+    $('#particular').fadeIn(700);
+    $('#empresa').toggle();
 });
-$('#empresa').change(function(evento) {
-    if ($('#empresa').is(':checked')) {
-        $('label[for='empresa']').first().html('Empresa');
-        $('#nomempresa').val('');
-        $('#nomempresa').attr('placeholder', 'Nombre de la empresa');
-        $('label[for='cif_nif']').first().html('CIF');
-        $('#cif_nif').val('');
-        $('#cif_nif').attr('placeholder', 'CIF');
-    }
+$('#radios-empresa').change(function(evento) {
+    console.log('cambio a Empresa!');
+    
+    $('#empresa').fadeIn(700);
+    $('#particular').toggle();
 });
