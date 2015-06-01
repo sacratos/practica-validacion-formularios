@@ -4,7 +4,8 @@ http://paletton.com/#uid=5580u0kllllvdbUqhgCgpq3btuM
 .margin-top-20{
   margin-top: 20px;
 }
-.error{color:#82171C;opacity: 0.9;}
+.error{color:#82171C;opacity: 0.9;font-size: 9px;}
+
 body{
   background:#8F6DA4;
   background-size:100% 100%;
@@ -21,6 +22,10 @@ body{
   color:#862D63!important;
   font-weight:300;
   font-family: 'Open Sans', sans-serif;
+}
+span{
+  color: red;
+  opacity: 0.8;
 }
 .auth h1 span{
   font-size:21px;
