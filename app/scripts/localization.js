@@ -4,6 +4,7 @@
  */
 $.extend($.validator.messages, {
 	required: "Este campo es obligatorio.",
+	lettersonly: "Por favor, escribe solo letras",
 	remote: "Por favor, rellena este campo.",
 	email: "Por favor, escribe un correo válido.",
 	url: "Por favor, escribe una URL válida.",
@@ -23,6 +24,4 @@ $.extend($.validator.messages, {
 	nifES: "Por favor, escribe un NIF válido.",
 	nieES: "Por favor, escribe un NIE válido.",
 	cifES: "Por favor, escribe un CIF válido.",
-        
-
 });

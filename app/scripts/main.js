@@ -1,8 +1,5 @@
 'use strict';
 $('#formulario').validate({
-    onkeyup: false,
-    onfocusout: false,
-    onclick: false,
     rules: {
         nombre: {
             required: true,
@@ -13,33 +10,37 @@ $('#formulario').validate({
         },
         telefono: {
             required: true,
-            maxlenght: 9,
-            minlenght: 9,
             digits: true,
+            minlength: 9,
         },
         email1: {
             required: true,
             email: true,
-            remote: 'php/validarEmail.php',
+            /*remote: 'php/validarEmail.php',*/
         },
         repemail: {
             email: true,
-            remote: 'php/validarEmail.php',
             equalTo: email1,
         },
         ///////////////////////////////////
         cp: {
-            digits: true,
             required: true,
+            digits: true,
             minlength: 5,
-            maxlenght: 5,
-            remote: 'php/validaPostal.php',
+        },
+        nif:{
+            nif: true,
+        },
+        cif: {
+            cif:true,
         },
         localidad: {
             required: true,
+            lettersonly: true,
         },
         provincia: {
             required: true,
+            lettersonly: true,
         },
         cuenta: {
             iban: true,
@@ -52,8 +53,8 @@ $('#formulario').validate({
         },
         contrasena1: {
             required: true,
-            pass: true,
-            minlenght: 7,
+            minlength: 6,
+            /*complejidad: true,*/
         },
         contrasena2: {
             equalTo: contrasena1,
@@ -70,7 +71,6 @@ $('#formulario').validate({
         telefono: {
             required: 'Por favor, escribe tu telefono',
             minlength: 'Por favor, no escribas menos de 9 caracteres.',
-            maxlength: 'Por favor, no escribas mas de 9 caracteres.',
             digits: 'Por favor, escribe sólo dígitos.',
         },
         email: {
@@ -93,9 +93,11 @@ $('#formulario').validate({
         },
         localidad: {
             required: 'Por favor, escribe tu localidad',
+            lettersonly: 'Por favor, sólo caracteres',
         },
         provincia: {
             required: 'Por favor, escribe tu provincia',
+            lettersonly: 'Por favor, sólo caracteres',
         },
         usuario: {
             required: 'Por favor, escribe tu nombre de usuario',
@@ -110,7 +112,8 @@ $('#formulario').validate({
         }
     }
 });
-$('#particular').toggle();
+
+$('#empresa').toggle();
 $('#radios-particular').change(function(evento) {
     console.log('cambio a Particular!');
     $('#particular').fadeIn(700);
@@ -122,25 +125,41 @@ $('#radios-empresa').change(function(evento) {
     $('#empresa').fadeIn(700);
     $('#particular').toggle();
 });
-$("#cp").on('focusout', function() {
-        var codigo = $("#cp").val();
-        var longi = codigo.length;
-        while (longi < 5) {
-            codigo = "0" + codigo;
-            longi++;
+$('#cp').on('focusout',function() {
+
+    var cp = '00000';
+    cp = $('#cp').val();
+    var cpLon = cp.length;
+    if (cpLon < 5) {
+        var numCeros = 5 - cpLon;
+        var ceros = '';
+        for (var i = 0; i < numCeros; i++) {
+            ceros += '0';
         }
-        $('#cp').attr('placeholder', codigo);
-        //$("#cp").val(codigo);   
-    })
-    .on('click', function() {
-        var codigo = $("#cp").val();
-        var longi = codigo.length;
-        while (longi < 5) {
-            codigo = codigo + "0";
-            longi++;
-            $('#cp').attr('placeholder', codigo);
+        $('#cp').val(ceros + cp);
+    }
+
+});
+
+var complejo = 0;
+$('#contrasena1').focusin(function() {
+    $('#contrasena1').complexify({
+        minimumChars: 6
+    }, function(valid, complexity) {
+        $('#complejidad').val(complexity);
+        complejo = complexity;
+
+        if (complexity < 20 && complexity > 0) {
+            $('#labelComplejidad').html('Contraseña débil.');
+        } else if (complexity >= 20 && complexity < 40) {
+            $('#labelComplejidad').html('Contraseña normal.');
+        } else if (complexity == 0) {
+            $('#labelComplejidad').html('');
+        } else {
+            $('#labelComplejidad').html('Contraseña muy buena.');
         }
     });
+});
 
 function actualizaNombreApellidos() {
     if ($("#radios-particular").is(':checked')) {

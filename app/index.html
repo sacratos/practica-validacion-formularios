@@ -92,6 +92,8 @@
                         <label class="control-label col-sm-4" for="contraseña1">Contraseña<span>*</span></label>
                         <div class="col-sm-8">
                             <input id="contrasena1" name="contrasena1" placeholder="Introduce tu contraseña" class="form-control input-md" type="password">
+                            <meter value="0" id="complejidad" low="20" high="40" max="100" min="0"></meter>
+                            <label id="labelComplejidad"></label>
                         </div>
                     </div>
                     <!-- Password input REPETIR CONTRASEÑA-->
@@ -109,12 +111,12 @@
                         <label class="control-label col-sm-2" for="radios1">Demandante<span>*</span></label>
                         <div class="col-sm-4">
                             <label class="radio-inline" for="radios-empresa">
-                                <input name="radios1" id="radios-empresa" value="1" checked="checked" type="radio">Empresa
+                                <input name="radios1" id="radios-empresa" value="1"  type="radio">Empresa
                             </label>
                         </div>
                         <div class="col-sm-4">
                             <label class="radio-inline" for="radios-particular">
-                                <input name="radios1" id="radios-particular" value="2" type="radio">Particular
+                                <input name="radios1" id="radios-particular" value="2" checked="checked" type="radio">Particular
                             </label>
                         </div>
                     </div>
@@ -152,7 +154,7 @@
                     <div class="col-sm-12">
                         <label class="control-label col-sm-2" for="cp">Codigo Postal<span>*</span></label>
                         <div class="col-sm-10">
-                            <input id="cp" name="cp" placeholder="Escribe tu código postal" class="form-control input-md" type="text">
+                            <input id="cp" name="cp" placeholder="Escribe tu código postal" maxlength="5" class="form-control input-md" type="text">
                         </div>
                     </div>
                     <!-- Text input LOCALIDAD-->
@@ -447,14 +449,17 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/jquery.validate/dist/jquery.validate.js"></script>
+    <script src="bower_components/jquery.validate/dist/additional-methods.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/jquery.complexify.js/jquery.complexify.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({app,.tmp}) scripts/main.js -->
     <script src="scripts/iban.js"></script>
+    <script src="scripts/localization.js"></script>
+    <script src="scripts/validarCif.js"></script>
+    <script src="scripts/validarNif.js"></script>
     <script src="scripts/main.js"></script>
-    <script src="scripts/contraseña.js"></script>
     <!-- endbuild -->
 </body>
 
