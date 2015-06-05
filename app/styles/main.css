@@ -6,7 +6,8 @@ http://paletton.com/#uid=5580u0kllllvdbUqhgCgpq3btuM
 }
 .error{color:#82171C;opacity: 0.9;font-size: 9px;}
 meter{
-  width: 200px;
+  width: 250px;
+  height: 15px;
 }
 body{
   background:#8F6DA4;

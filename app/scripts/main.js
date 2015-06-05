@@ -30,6 +30,11 @@ $('#formulario').validate({
         },
         nif:{
             nif: true,
+            remote: {
+                param: {
+                    url: 'php/evaluar-nif.php',
+                    type: 'get'
+                },
         },
         cif: {
             cif:true,
@@ -53,8 +58,7 @@ $('#formulario').validate({
         },
         contrasena1: {
             required: true,
-            minlength: 6,
-            /*complejidad: true,*/
+            minlength: 10,
         },
         contrasena2: {
             equalTo: contrasena1,
@@ -105,7 +109,7 @@ $('#formulario').validate({
         },
         contrasena1: {
             required: 'Por favor, escribe tu contraseña',
-            minlenght: 'Contraseña de minimo 7 caracteres',
+            minlength: 'Contraseña de minimo 10 caracteres',
         },
         contrasena2: {
             equalTo: 'Las contraseñas no coinciden',
@@ -140,9 +144,14 @@ $('#cp').on('focusout',function() {
     }
 
 });
+$('#repemail').focusout(function() {
+    if ($('#email1').val() == $('#repemail').val()) {
+        $('#usuario').val($('#email1').val());
+    }
 
+});
 var complejo = 0;
-$('#contrasena1').focusin(function() {
+$('#contrasena1').on('focusin',function() {
     $('#contrasena1').complexify({
         minimumChars: 6
     }, function(valid, complexity) {
@@ -156,7 +165,7 @@ $('#contrasena1').focusin(function() {
         } else if (complexity == 0) {
             $('#labelComplejidad').html('');
         } else {
-            $('#labelComplejidad').html('Contraseña muy buena.');
+            $('#labelComplejidad').html('Contraseña compleja.');
         }
     });
 });
@@ -168,3 +177,29 @@ function actualizaNombreApellidos() {
 }
 $(document).on("change, keyup", "#nombre", actualizaNombreApellidos);
 $(document).on("change, keyup", "#apellidos", actualizaNombreApellidos);
+
+$('#cp').on('focusout',function() {
+    $.ajax({
+        url: 'php/cargarProvincias.php',
+        type: 'GET',
+        data: {
+            cp: $('#cp').val(),
+            opcionCarga: '1'
+        },
+        success: function(provincia) {
+            $('#provincia').val(provincia);
+        }
+    });
+    $.ajax({
+        url: 'php/cargarProvincias.php',
+        type: 'GET',
+        data: {
+            cp: $('#cp').val(),
+            opcionCarga: '2'
+        },
+        success: function(localidades) {
+            $('#localidad').html(localidades);
+        }
+    });
+
+});
