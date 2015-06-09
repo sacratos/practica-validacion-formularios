@@ -35,6 +35,7 @@ $('#formulario').validate({
                     url: 'php/evaluar-nif.php',
                     type: 'get'
                 },
+            },
         },
         cif: {
             cif:true,
@@ -116,7 +117,12 @@ $('#formulario').validate({
         }
     }
 });
+$('#repemail').focusout(function() {
+    if ($('#email1').val() == $('#repemail').val()) {
+        $('#usuario').val($('#email1').val());
+    }
 
+});
 $('#empresa').toggle();
 $('#radios-particular').change(function(evento) {
     console.log('cambio a Particular!');
@@ -130,26 +136,111 @@ $('#radios-empresa').change(function(evento) {
     $('#particular').toggle();
 });
 $('#cp').on('focusout',function() {
+     var caracteres = $("#cp").val();
+     var num = 5 - caracteres.length;
+     var cero = "0";
 
-    var cp = '00000';
-    cp = $('#cp').val();
-    var cpLon = cp.length;
-    if (cpLon < 5) {
-        var numCeros = 5 - cpLon;
-        var ceros = '';
-        for (var i = 0; i < numCeros; i++) {
-            ceros += '0';
-        }
-        $('#cp').val(ceros + cp);
+     if (num > 0) {
+         for (i = 1; i < num; i++) {
+             cero += "0";
+         }
+
+         $("#cp").val(cero + caracteres);
+     } else if (num <= 0) {
+         $("#cp").val(caracteres);
+     }
+
+     var cod = new Array();
+
+
+     cod[1] = "Alava";
+     cod[2] = "Albacete";
+     cod[3] = "Alicante";
+     cod[4] = "Almeria";
+     cod[5] = "Avila";
+     cod[6] = "Badajoz";
+     cod[7] = "Illes Balears";
+     cod[8] = "Barcelona";
+     cod[9] = "Burgos";
+     cod[10] = "Caceres";
+     cod[11] = "Cadiz";
+     cod[12] = "Castellon";
+     cod[13] = "Ciudad Real";
+     cod[14] = "Cordoba";
+     cod[15] = "A Coruña";
+     cod[16] = "Cuenca";
+     cod[17] = "Girona";
+     cod[18] = "Granada";
+     cod[19] = "Guadalajara";
+     cod[20] = "Guipuzcoa";
+     cod[21] = "Huelva";
+     cod[22] = "Huesca";
+     cod[23] = "Jaen";
+     cod[24] = "Leon";
+     cod[25] = "Lleida";
+     cod[26] = "La Rioja";
+     cod[27] = "Lugo";
+     cod[28] = "Madrid";
+     cod[29] = "Malaga";
+     cod[30] = "Murcia";
+     cod[31] = "Navarra";
+     cod[32] = "Ourense";
+     cod[33] = "Asturias";
+     cod[34] = "Palencia";
+     cod[35] = "Las Palmas";
+     cod[36] = "Pontevedra";
+     cod[37] = "Salamanca";
+     cod[38] = "S.C. Tenerife";
+     cod[39] = "Cantabria";
+     cod[40] = "Segovia";
+     cod[41] = "Sevilla";
+     cod[42] = "Soria";
+     cod[43] = "Tarragona";
+     cod[44] = "Teruel";
+     cod[45] = "Toledo";
+     cod[46] = "Valencia";
+     cod[47] = "Valladolid";
+     cod[48] = "Vizcaya";
+     cod[49] = "Zamora";
+     cod[50] = "Zaragoza";
+     cod[51] = "Ceuta";
+     cod[52] = "Melilla";
+     $cp = $("#cp").val();
+     $cpostal = $cp.substr(0, 2);
+     if ($cpostal == 00 || $cp < 1000 || $cp > 52999) {
+         alert("el CP es erroneo");
+
+     }
+
+     if ($cpostal.substr(0, 1) == 0) {
+
+         $cpostal = $cp.substr(1, 1);
+
+     }
+
+     $("#provincia").val(cod[$cpostal]);
+     $.ajax({
+         url: "php/cargarProvincias.php",
+         type: "POST",
+         data: "cpostal=" + $("#cp").val(),
+         success: function(opciones) {
+             $("#localidad").html(opciones);
+             $("#localidad").val(cod[$cpostal]);
+         }
+
+     })
+
+ });
+/*
+$('#provincia').focusin(function() {
+    alert('Entra en provincia');
+    if ($('#localidad').val()=="") {
+        alert('Rellena antes la localidad');
+    }else{
+        alert('el campo de localidad esta relleno');
     }
+});*/
 
-});
-$('#repemail').focusout(function() {
-    if ($('#email1').val() == $('#repemail').val()) {
-        $('#usuario').val($('#email1').val());
-    }
-
-});
 var complejo = 0;
 $('#contrasena1').on('focusin',function() {
     $('#contrasena1').complexify({
@@ -177,29 +268,3 @@ function actualizaNombreApellidos() {
 }
 $(document).on("change, keyup", "#nombre", actualizaNombreApellidos);
 $(document).on("change, keyup", "#apellidos", actualizaNombreApellidos);
-
-$('#cp').on('focusout',function() {
-    $.ajax({
-        url: 'php/cargarProvincias.php',
-        type: 'GET',
-        data: {
-            cp: $('#cp').val(),
-            opcionCarga: '1'
-        },
-        success: function(provincia) {
-            $('#provincia').val(provincia);
-        }
-    });
-    $.ajax({
-        url: 'php/cargarProvincias.php',
-        type: 'GET',
-        data: {
-            cp: $('#cp').val(),
-            opcionCarga: '2'
-        },
-        success: function(localidades) {
-            $('#localidad').html(localidades);
-        }
-    });
-
-});
